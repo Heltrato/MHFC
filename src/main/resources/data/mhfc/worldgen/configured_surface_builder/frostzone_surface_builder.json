@@ -1,0 +1,14 @@
+{
+  "config": {
+    "top_material": {
+      "Name": "mhfc:frostzone_snow"
+    },
+    "under_material": {
+      "Name": "mhfc:frostzone_stone"
+    },
+    "underwater_material": {
+      "Name": "frostzone_water"
+    }
+  },
+  "type": "mhfc:frostzone_surface_builder"
+}

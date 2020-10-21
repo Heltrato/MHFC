@@ -1,0 +1,13 @@
+modLoader="javafml"
+loaderVersion="[31,)"
+license="Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights."
+[[mods]] 
+modId="mhfc"
+version="${file.jarVersion}"
+displayName="Monster Hunter Frontier Craft"
+displayURL="http://example.com/"
+credits="Forge Minecraft, GeckoLib"
+authors="Heltrato"
+description='''
+This is a long form description of the mod. You can write whatever you want here
+'''
