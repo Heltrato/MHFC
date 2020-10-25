@@ -3,6 +3,9 @@ package com.heltrato.mhfc;
 import com.heltrato.mhfc.gui.KeybindingsMH;
 import com.heltrato.mhfc.world.DimensionsMH;
 import com.heltrato.mhfc.world.surfacebuilders.SurfaceBuildersMH;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -81,8 +84,6 @@ public class MainMH {
 		log.info("Implementing Spawn Placements for " + MainMH.MODID.toUpperCase() + " Entities. ");
 		EntitiesMH.addEntityAttributes();
 		log.info("Implementing Attributes for " + MainMH.MODID.toUpperCase() + " Entities. ");
-		//SurfaceBuildersMH.addSurfaceBuilders();
-		log.info("Implementing Surface Builders for " + MainMH.MODID.toUpperCase());
 		DimensionsMH.addBiomeProvider();
 		log.info("Implementing Biome Provider for " + MainMH.MODID.toUpperCase());
 		DimensionsMH.addChunkGenerator();
@@ -110,6 +111,16 @@ public class MainMH {
 	}
 
 
+@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+	public static class WorldGenRegistryMH {
+
+		@SubscribeEvent
+	public static void addSurfaceBuilders(RegistryEvent.Register<SurfaceBuilder<?>> args){
+			SurfaceBuildersMH.addSurfaceBuilders();
+			log.info("Implementing Surface Builders for " + MainMH.MODID.toUpperCase());
+		}
+
+	}
 
 
 }
