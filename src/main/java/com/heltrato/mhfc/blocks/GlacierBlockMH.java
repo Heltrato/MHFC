@@ -35,7 +35,7 @@ public class GlacierBlockMH extends BlockMH {
 
 	@Override
 	public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-		if (worldIn.getBlockState(pos).getBlock() == BlocksMH.FROSTZONE_CRACKEDICE.get()) {
+		if (worldIn.getBlockState(pos).getBlock() == BlocksMH.FROSTZONE_CRACKEDICE) {
 			BlockState var1 = Blocks.WATER.getDefaultState();
 			worldIn.playSound(null, pos, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.BLOCKS, 1.0f,
 					1.0f);

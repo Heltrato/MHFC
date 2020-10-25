@@ -1,53 +1,61 @@
 package com.heltrato.mhfc.blocks;
 
-import java.util.function.Function;
-import java.util.function.Supplier;
-
 import com.heltrato.mhfc.MainMH;
 import com.heltrato.mhfc.generator.ItemModelsMH;
 import com.heltrato.mhfc.generator.LanguagesMH;
 import com.heltrato.mhfc.generator.LootTableMH.AddBlockLoots;
 import com.heltrato.mhfc.generator.abstracts.BlockStateProviderMH;
-import com.heltrato.mhfc.items.ItemsMH;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Supplier;
 
 public class BlocksMH {
 
 	public final static DeferredRegister<Block> MOD_BLOCK = DeferredRegister.create(ForgeRegistries.BLOCKS,
 			MainMH.MODID);
 
-	public final static RegistryObject<Block> FROSTZONE_CRACKEDICE = addBlock("frostzone_crackedice",
-			() -> new GlacierBlockMH(0.5f, 0.5f, ToolType.PICKAXE, 0.98F));
-	public final static RegistryObject<Block> FROSTZONE_ICE = addBlock("frostzone_ice",
-			() -> new GlacierBlockMH( 0.5F, 0.5F, ToolType.PICKAXE, 0.98f));
-	public final static RegistryObject<Block> FROSTZONE_SNOW = addBlock("frostzone_snow", () -> new SnowBlockMH(0.6f, 0.7f, 1.0f));
-	public final static RegistryObject<Block> FROSTZONE_STONE = addBlock("frostzone_stone", () -> new StoneBlockMH(1.5f));
-	public final static RegistryObject<Block> FROSTZONE_SMOOTH_STONE = addBlock("frostzone_smooth_stone", () -> new StoneBlockMH(1.5f));
-	public final static RegistryObject<Block> FROSTZONE_CLAY_LIME = addBlock("frostzone_clay_lime", () -> new SnowBlockMH(0.6f, 1.0f,  1.3f));
-	public final static RegistryObject<Block> FROSTZONE_CLAY_PEACH = addBlock("frostzone_clay_peach", () -> new SnowBlockMH(1.0f, 1.0f, 1.1f));
-	public final static RegistryObject<Block> FROSTZONE_MINERAL_LOW = addBlock("frostzone_mineral_low", () -> new MineralBlockMH(2, 12));
+	public static Block FROSTZONE_CRACKEDICE;
+	public  static Block FROSTZONE_ICE;
+	public  static Block FROSTZONE_SNOW;
+	public  static Block FROSTZONE_STONE;
+	public  static Block FROSTZONE_SMOOTH_STONE;
+	public  static Block FROSTZONE_CLAY_LIME;
+	public  static Block FROSTZONE_CLAY_PEACH;
+	public  static Block FROSTZONE_MINERAL_LOW;
+
+	public static void initateBlocks(){
+		FROSTZONE_CRACKEDICE = addBlock("frostzone_crackedice",() -> new GlacierBlockMH(0.5f, 0.5f, ToolType.PICKAXE, 0.98F));
+		FROSTZONE_ICE = addBlock("frostzone_ice",
+				() -> new GlacierBlockMH( 0.5F, 0.5F, ToolType.PICKAXE, 0.98f));
+		FROSTZONE_SNOW = addBlock("frostzone_snow", () -> new SnowBlockMH(0.6f, 0.7f, 1.0f));
+		FROSTZONE_STONE = addBlock("frostzone_stone", () -> new StoneBlockMH(1.5f));
+		FROSTZONE_SMOOTH_STONE = addBlock("frostzone_smooth_stone", () -> new StoneBlockMH(1.5f));
+		FROSTZONE_CLAY_LIME = addBlock("frostzone_clay_lime", () -> new SnowBlockMH(0.6f, 1.0f,  1.3f));
+		FROSTZONE_CLAY_PEACH = addBlock("frostzone_clay_peach", () -> new SnowBlockMH(1.0f, 1.0f, 1.1f));
+		FROSTZONE_MINERAL_LOW = addBlock("frostzone_mineral_low", () -> new MineralBlockMH(2, 12));
+	}
+
 
 	public static void addBlockLanguage(final LanguagesMH arg) {
-		arg.addBlock(FROSTZONE_CRACKEDICE, "Frostzone Cracked Ice");
-		arg.addBlock(FROSTZONE_ICE, "Frostzone Ice");
-		arg.addBlock(FROSTZONE_SNOW, "Frostzone Snow");
-		arg.addBlock(FROSTZONE_STONE, "Frostzone Stone");
-		arg.addBlock(FROSTZONE_SMOOTH_STONE, "Frostzone Smooth Stone");
-		arg.addBlock(FROSTZONE_CLAY_LIME, "Frostzone Lime Clay");
-		arg.addBlock(FROSTZONE_CLAY_PEACH, "Frostzone Peach Clay");
-		arg.addBlock(FROSTZONE_MINERAL_LOW, "Frostzone Mineral Low I");
+		arg.add(FROSTZONE_CRACKEDICE, "Frostzone Cracked Ice");
+		arg.add(FROSTZONE_ICE, "Frostzone Ice");
+		arg.add(FROSTZONE_SNOW, "Frostzone Snow");
+		arg.add(FROSTZONE_STONE, "Frostzone Stone");
+		arg.add(FROSTZONE_SMOOTH_STONE, "Frostzone Smooth Stone");
+		arg.add(FROSTZONE_CLAY_LIME, "Frostzone Lime Clay");
+		arg.add(FROSTZONE_CLAY_PEACH, "Frostzone Peach Clay");
+		arg.add(FROSTZONE_MINERAL_LOW, "Frostzone Mineral Low I");
 	}
 
 	public static void addBlockStatesandModel(final BlockStateProviderMH arg) {
@@ -86,40 +94,31 @@ public class BlocksMH {
 
 	@OnlyIn(Dist.CLIENT)
 	public static void classifyBlockRenderTypes() {
-		RenderTypeLookup.setRenderLayer(FROSTZONE_CRACKEDICE.get(), RenderType.getTranslucent());
-		RenderTypeLookup.setRenderLayer(FROSTZONE_ICE.get(), RenderType.getTranslucent());
-		RenderTypeLookup.setRenderLayer(FROSTZONE_MINERAL_LOW.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(FROSTZONE_CRACKEDICE, RenderType.getTranslucent());
+		RenderTypeLookup.setRenderLayer(FROSTZONE_ICE, RenderType.getTranslucent());
+		RenderTypeLookup.setRenderLayer(FROSTZONE_MINERAL_LOW, RenderType.getCutout());
 		MainMH.log.info("Applying Render Types for certain " + MainMH.MODID.toUpperCase() + " blocks! ");
 	}
 
 	/*-------------------------------------------------------------------------------------------//
 	
 			NON PUBLIC METHODS BELOW; DO NOT EDIT NOR MODIFY. @author: Heltrato
-	
+	Revamp 1.16.3 changed to public
 	//-------------------------------------------------------------------------------------------*/
 
-	static RegistryObject<Block> addBlock(String arg1, Supplier<? extends Block> arg2) {
-		return addBlock(arg1, arg2, BlocksMH::addItemBlockProperty);
+	public static Block addBlock(String arg1, Supplier<? extends  Block> arg2){
+		BlockItem itemBlock = new BlockItem(arg2.get(), new Item.Properties().group(MainMH.getItemGroup()));
+		Registry.register(Registry.BLOCK, new ResourceLocation(MainMH.MODID, arg1), arg2.get());
+		Registry.register(Registry.ITEM, new ResourceLocation(MainMH.MODID, arg1), itemBlock);
+		return arg2.get();
 	}
 
-	static RegistryObject<Block> addBlock(String arg1, Supplier<? extends Block> arg2,
-										  Function<RegistryObject<Block>, Supplier<? extends Item>> arg4) {
-		RegistryObject<Block> var = MOD_BLOCK.register(arg1, arg2);
-		ItemsMH.MOD_ITEM.register(arg1, arg4.apply(var));
-		return var;
-	}
-
-	static Supplier<BlockItem> addItemBlockProperty(final RegistryObject<Block> var) {
-		return () -> new BlockItem(var.get(), new Item.Properties().group(MainMH.getItemGroup()));
-	}
-
-	static Supplier<BlockItem> addItemBlockProperty(final RegistryObject<Block> var4, int var3) {
-		return () -> new BlockItem(var4.get(), new Item.Properties().group(MainMH.getItemGroup())) {
-			@Override
-			public int getBurnTime(ItemStack itemstack) {
-				return var3;
-			}
-		};
+	public static Block addBlock(String arg1,  BlockItem arg2,Supplier<? extends  Block> arg3){
+		Registry.register(Registry.BLOCK, new ResourceLocation(MainMH.MODID, arg1), arg3.get());
+		if(arg2!=null) {
+			Registry.register(Registry.ITEM, new ResourceLocation(MainMH.MODID, arg1), arg2);
+		}
+		return arg3.get();
 	}
 
 }

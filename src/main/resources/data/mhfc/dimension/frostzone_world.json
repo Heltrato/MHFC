@@ -9,16 +9,7 @@
       "seed": 0,
       "biomes": [
         {
-          "parameters": {
-            "altitude": 0.0,
-            "weirdness": 0.0,
-            "offset": 0.375,
-            "temperature": 0.0,
-            "humidity": 0.5
-          },
-          "biome": "minecraft:warped_forest"
-        },
-        {
+
           "parameters": {
             "altitude": 0.0,
             "weirdness": 0.0,
@@ -26,7 +17,7 @@
             "temperature": -0.5,
             "humidity": 0.0
           },
-          "biome": "minecraft:basalt_deltas"
+          "biome": "mhfc:frostzone_thickhoar"
         }
       ],
       "temperature_noise": {

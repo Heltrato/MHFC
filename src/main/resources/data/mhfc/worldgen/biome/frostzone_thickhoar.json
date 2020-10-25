@@ -1,0 +1,49 @@
+{
+  "effects": {
+    "ambient_sound": "minecraft:block.glass.fall",
+    "additions_sound": {
+      "sound": "minecraft:block.glass.break",
+      "tick_chance": 0.0011
+    },
+    "sky_color": 5636095,
+    "foliage_color": 43690,
+    "grass_color": 43690,
+    "fog_color": 11184810,
+    "water_color": 16777215,
+    "water_fog_color": 16777215
+  },
+  "surface_builder": "mhfc:frostzone_surface_builder",
+  "carvers": {},
+  "features": [],
+  "starts": [],
+  "spawners": {
+    "monster": [
+
+    ],
+    "creature": [
+
+    ],
+    "ambient": [
+
+    ],
+    "water_creature": [
+
+    ],
+    "water_ambient": [
+
+    ],
+    "misc": [
+
+    ]
+  },
+  "player_spawn_friendly": false,
+  "precipitation": "none",
+  "temperature": 1.85,
+  "downfall": 0.5,
+  "category": "none",
+  "depth": 5.5,
+  "scale": 0.5,
+  "spawn_costs": {
+
+  }
+}

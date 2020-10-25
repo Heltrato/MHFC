@@ -1,13 +1,13 @@
 {
   "config": {
     "top_material": {
-      "Name": "mhfc:frostzone_snow"
+      "name": "mhfc:frostzone_snow"
     },
     "under_material": {
-      "Name": "mhfc:frostzone_stone"
+      "name": "mhfc:frostzone_stone"
     },
     "underwater_material": {
-      "Name": "frostzone_water"
+      "name": "minecraft:water"
     }
   },
   "type": "mhfc:frostzone_surface_builder"

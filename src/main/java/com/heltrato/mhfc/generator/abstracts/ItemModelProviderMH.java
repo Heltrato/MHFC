@@ -1,5 +1,6 @@
 package com.heltrato.mhfc.generator.abstracts;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import com.heltrato.mhfc.MainMH;
@@ -29,13 +30,13 @@ public abstract class ItemModelProviderMH extends ItemModelProvider {
 	}
 	
 	// Adds the blocks name base from the registryname of the Block (Supplier).
-	public String addBlockName(Supplier<? extends Block> arg) {
-		return arg.get().getRegistryName().getPath();
+	public String addBlockName(Block arg) {
+		return Objects.requireNonNull(arg.getRegistryName()).getPath();
 	}
 	
 	// Adds the items name base from the registryname of the Item (Supplier).
 	public String  addItemName(Supplier<? extends Item> var1) {
-		return var1.get().getRegistryName().getPath();
+		return Objects.requireNonNull(var1.get().getRegistryName()).getPath();
 	}
 	/**
 	 * 	This method adds block items to its specific model.json
@@ -43,17 +44,17 @@ public abstract class ItemModelProviderMH extends ItemModelProvider {
 	 * @return the specific block and the registry Name
 	 */
 	
-	public ItemModelBuilder addItemBlockModel(Supplier<? extends Block> arg) 
+	public ItemModelBuilder addItemBlockModel(Block arg) 
 	{
 		return this.addItemBlockModel(arg, addBlockName(arg));
 	}
 	
-	public ItemModelBuilder addItemBlockModel(Supplier<? extends Block> arg1, String arg2) {
+	public ItemModelBuilder addItemBlockModel(Block arg1, String arg2) {
 		return this.withExistingParent(addBlockName(arg1), modLoc(BLOCKFOLDER + arg2));
 	}
 	
 	//Adds the texture for Block Models.
-	public ItemModelBuilder addItemBlockModelTexture(Supplier<? extends Block> arg) {
+	public ItemModelBuilder addItemBlockModelTexture(Block arg) {
 		return withExistingParent(addBlockName(arg), mcLoc(ITEMGENERATEDLOCATION)).texture(ITEMLAYER0, modLoc(BLOCKFOLDER + addBlockName(arg)));
 	}
 	

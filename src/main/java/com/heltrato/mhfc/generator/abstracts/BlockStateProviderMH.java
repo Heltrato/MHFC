@@ -44,8 +44,8 @@ public abstract class BlockStateProviderMH extends BlockStateProvider {
 		return super.models();
 	}
 	
-	public void basicBlock(Supplier<? extends Block> arg) {
-		simpleBlock(arg.get());
+	public void basicBlock(Block arg) {
+		simpleBlock(arg);
 	}
 	
 }

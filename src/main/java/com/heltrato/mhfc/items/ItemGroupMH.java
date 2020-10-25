@@ -12,7 +12,7 @@ public class ItemGroupMH extends ItemGroup {
 
 	@Override
 	public ItemStack createIcon() {
-		return new ItemStack(ItemsMH.SWORD_HUNTERKNIFE.get());
+		return new ItemStack(ItemsMH.SWORD_HUNTERKNIFE);
 	}
 	
 }

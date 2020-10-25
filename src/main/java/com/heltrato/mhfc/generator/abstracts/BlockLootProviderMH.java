@@ -22,12 +22,12 @@ public abstract class BlockLootProviderMH extends BlockLootTables {
 	final static ILootCondition.IBuilder SILKorSHEAR = SHEAR.alternative(SILKTOUCH);
 	final static ILootCondition.IBuilder SHEARorSILK = SILKorSHEAR.inverted();
 	
-	public void registerTable(Supplier<? extends Block> arg1, Function<Block, LootTable.Builder> arg2) {
-        super.registerLootTable(arg1.get(), arg2);
+	public void registerTable(Block arg1, Function<Block, LootTable.Builder> arg2) {
+        super.registerLootTable(arg1, arg2);
     }
 	
-	public void addBlockSelfDrop(Supplier<? extends Block> arg1) {
-		super.registerDropSelfLootTable(arg1.get());
+	public void addBlockSelfDrop(Block arg1) {
+		super.registerDropSelfLootTable(arg1);
 	}
 
 
