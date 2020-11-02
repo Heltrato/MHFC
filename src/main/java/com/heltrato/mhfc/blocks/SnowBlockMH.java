@@ -6,15 +6,14 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 public class SnowBlockMH extends  BlockMH {
@@ -31,8 +30,8 @@ public class SnowBlockMH extends  BlockMH {
     }
 
     @Override
-    public boolean ticksRandomly(BlockState state) {
-        if(this == BlocksMH.FROSTZONE_SNOW){
+    public boolean ticksRandomly(@Nonnull BlockState state) {
+        if(this == BlocksMH.FROSTZONE_SNOW.get()){
             return true;
         }
         return super.ticksRandomly(state);
@@ -40,7 +39,7 @@ public class SnowBlockMH extends  BlockMH {
 
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        if(this == BlocksMH.FROSTZONE_SNOW){
+        if(this == BlocksMH.FROSTZONE_SNOW.get()){
             entityIn.setMotion(entityIn.getMotion().mul(0.5D,1.0D,0.5D));
         }
         super.onEntityWalk(worldIn, pos, entityIn);
@@ -49,7 +48,7 @@ public class SnowBlockMH extends  BlockMH {
     @Override
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         super.animateTick(stateIn, worldIn, pos, rand);
-        if(this == BlocksMH.FROSTZONE_SNOW) {
+        if(this == BlocksMH.FROSTZONE_SNOW.get()) {
             if (rand.nextInt(4) == 0) {
                 worldIn.addParticle(ParticleTypes.POOF, pos.getX() + rand.nextFloat(), pos.getY() + 1.1f, pos.getZ() + rand.nextFloat(), 0D, 0D, 0D);
             }
@@ -63,7 +62,7 @@ public class SnowBlockMH extends  BlockMH {
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        if(this == BlocksMH.FROSTZONE_SNOW){
+        if(this == BlocksMH.FROSTZONE_SNOW.get()){
             return field_220126_b;
         }
         return super.getCollisionShape(state, worldIn, pos, context);

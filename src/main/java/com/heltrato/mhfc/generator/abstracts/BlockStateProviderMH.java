@@ -1,5 +1,6 @@
 package com.heltrato.mhfc.generator.abstracts;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import com.heltrato.mhfc.MainMH;
@@ -11,6 +12,8 @@ import net.minecraftforge.client.model.generators.BlockModelProvider;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import javax.annotation.Nonnull;
+
 public abstract class BlockStateProviderMH extends BlockStateProvider {
 	
 	BlockModelProviderMH BLOCKMODELS;
@@ -19,6 +22,7 @@ public abstract class BlockStateProviderMH extends BlockStateProvider {
 		super(gen, MainMH.MODID, exFileHelper);
 		BLOCKMODELS = new BlockModelProviderMH(gen, exFileHelper) {
 			
+			@Nonnull
 			@Override
 			public String getName() {
 				return BlockStateProviderMH.this.getName();
@@ -36,7 +40,7 @@ public abstract class BlockStateProviderMH extends BlockStateProvider {
 	}
 
 	String blockName(Supplier<? extends Block> arg) {
-		return arg.get().getRegistryName().getPath();
+		return Objects.requireNonNull(arg.get().getRegistryName()).getPath();
 	}
 	
 	@Override
@@ -44,8 +48,8 @@ public abstract class BlockStateProviderMH extends BlockStateProvider {
 		return super.models();
 	}
 	
-	public void basicBlock(Block arg) {
-		simpleBlock(arg);
+	public void basicBlock( Supplier<? extends  Block> args ) {
+		simpleBlock(args.get());
 	}
 	
 }

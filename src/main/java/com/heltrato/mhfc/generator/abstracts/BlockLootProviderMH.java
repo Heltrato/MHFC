@@ -26,8 +26,8 @@ public abstract class BlockLootProviderMH extends BlockLootTables {
         super.registerLootTable(arg1, arg2);
     }
 	
-	public void addBlockSelfDrop(Block arg1) {
-		super.registerDropSelfLootTable(arg1);
+	public void addBlockSelfDrop(Supplier<? extends Block> arg) {
+		super.registerDropSelfLootTable(arg.get());
 	}
 
 

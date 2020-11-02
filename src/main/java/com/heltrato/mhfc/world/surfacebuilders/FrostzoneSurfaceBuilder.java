@@ -69,7 +69,7 @@ public class FrostzoneSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig
                     --j;
                     chunkIn.setBlockState(blockpos$mutableblockpos, middleBlock, false);
 
-                    if (j == 0 && middleBlock.getBlock() == BlocksMH.FROSTZONE_SNOW && k > 1) {
+                    if (j == 0 && middleBlock.getBlock() == BlocksMH.FROSTZONE_SNOW.get() && k > 1) {
                         j = random.nextInt(4) + Math.max(0, posY - 63);
                         middleBlock = Blocks.WATER.getDefaultState();
                     }

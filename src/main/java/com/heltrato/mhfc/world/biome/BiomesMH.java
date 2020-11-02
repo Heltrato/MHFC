@@ -2,15 +2,24 @@ package com.heltrato.mhfc.world.biome;
 
 import com.heltrato.mhfc.MainMH;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.WorldGenRegistries;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeMaker;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Supplier;
 
 public class BiomesMH {
 
-    public static ResourceLocation FROSTZONE_THICKHOAR = new ResourceLocation(MainMH.MODID, "frostzone_thickhoar");
+    public static DeferredRegister<Biome> MOD_BIOME = DeferredRegister.create(ForgeRegistries.BIOMES, MainMH.MODID);
 
-    public static void addBiomeIDS() {
-        Registry.register(WorldGenRegistries.BIOME, FROSTZONE_THICKHOAR, BiomeMaker.makeColdOceanBiome(false));
+    static {
+        addBiome("frostzone_thickhoar", BiomeMaker::makeVoidBiome);
+    }
+
+    public static RegistryObject<Biome> addBiome(String arg1, Supplier<Biome> arg2){
+        return  MOD_BIOME.register(arg1, arg2);
+
     }
 }

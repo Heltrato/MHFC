@@ -1,15 +1,10 @@
 package com.heltrato.mhfc;
 
 import com.heltrato.mhfc.gui.KeybindingsMH;
+import com.heltrato.mhfc.items.ItemsMH;
 import com.heltrato.mhfc.world.DimensionsMH;
 import com.heltrato.mhfc.world.biome.BiomesMH;
 import com.heltrato.mhfc.world.surfacebuilders.SurfaceBuildersMH;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,7 +16,6 @@ import com.heltrato.mhfc.generator.LanguagesMH;
 import com.heltrato.mhfc.generator.LootTableMH;
 import com.heltrato.mhfc.generator.RecipesMH;
 import com.heltrato.mhfc.items.ItemGroupMH;
-import com.heltrato.mhfc.items.ItemsMH;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemGroup;
@@ -45,10 +39,6 @@ public class MainMH {
 
 	public MainMH() {
 		IEventBus var = FMLJavaModLoadingContext.get().getModEventBus();
-		var.addGenericListener(Item.class, this::addItem);
-		var.addGenericListener(Block.class, this::addBlock);
-		var.addGenericListener(SurfaceBuilder.class, this::addSurfaceBuilders);
-		var.addGenericListener(Biome.class, this::addBiome);
 		var.addListener(this::setFMLClientEvent);
 		var.addListener(this::setFMLCommonEvent);
 		var.addListener(this::setDataGatherEvent);
@@ -58,9 +48,17 @@ public class MainMH {
 
 	// Register all features here.
 	final void setDeferredRegisterBus(final IEventBus arg) {
-
+		ItemsMH.MOD_ITEM.register(arg);
+		BlocksMH.MOD_BLOCK.register(arg);
 		EntitiesMH.MOD_ENTITY.register(arg);
+		BiomesMH.MOD_BIOME.register(arg);
+		SurfaceBuildersMH.MOD_SURFACEBUILDER.register(arg);
+		//Debug
+		log.info("Adding all " + MainMH.MODID.toUpperCase() + "BLOCKS!");
+		log.info("Adding all " + MainMH.MODID.toUpperCase() + " ITEMS!");
 		log.info("Adding all " + MainMH.MODID.toUpperCase() + " ENTITIES!");
+		log.info("Adding all " + MainMH.MODID.toUpperCase() + " BIOMES!");
+		log.info("Adding all " + MainMH.MODID.toUpperCase() + " SURFACE BUILDERS!");
 		// Checker subscriber
 		log.info("Adding all " + MainMH.MODID.toUpperCase() + " "
 				+ "deferred objects into the game using ForgeRegistries.");
@@ -93,7 +91,6 @@ public class MainMH {
 		log.info("Implementing Biome Provider for " + MainMH.MODID.toUpperCase());
 		DimensionsMH.addChunkGenerator();
 		log.info("Implementing Chunk Generator " + MainMH.MODID.toUpperCase());
-
 		log.info("Firing" + MainMH.MODID.toUpperCase() + "FML Common Setup Event!");
 	}
 
@@ -114,29 +111,5 @@ public class MainMH {
 	public static ItemGroup getItemGroup() {
 		return ITEM_GROUP;
 	}
-
-
-
-	public void addSurfaceBuilders(final RegistryEvent.Register<SurfaceBuilder<?>> args){
-			SurfaceBuildersMH.addSurfaceBuilders();
-			log.info("Implementing Surface Builders for " + MainMH.MODID.toUpperCase());
-	}
-
-	public void addBiome(final RegistryEvent.Register<Biome> args) {
-		BiomesMH.addBiomeIDS();
-		log.info("Implementing Biomes for " + MainMH.MODID.toUpperCase());
-	}
-
-	public void addBlock(final RegistryEvent.Register<Block> arg){
-		BlocksMH.initateBlocks();
-		log.info("Adding all " + MainMH.MODID.toUpperCase() + " BLOCKS!");
-	}
-
-	public void addItem(final RegistryEvent.Register<Item> arg){
-		ItemsMH.initiateItems();
-		log.info("Adding all " + MainMH.MODID.toUpperCase() + " ITEMS!");
-	}
-
-
 
 }

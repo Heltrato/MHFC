@@ -5,14 +5,11 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -35,7 +32,7 @@ public class GlacierBlockMH extends BlockMH {
 
 	@Override
 	public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-		if (worldIn.getBlockState(pos).getBlock() == BlocksMH.FROSTZONE_CRACKEDICE) {
+		if (worldIn.getBlockState(pos).getBlock() == BlocksMH.FROSTZONE_CRACKEDICE.get()) {
 			BlockState var1 = Blocks.WATER.getDefaultState();
 			worldIn.playSound(null, pos, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.BLOCKS, 1.0f,
 					1.0f);

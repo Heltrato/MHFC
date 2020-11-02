@@ -44,18 +44,18 @@ public abstract class ItemModelProviderMH extends ItemModelProvider {
 	 * @return the specific block and the registry Name
 	 */
 	
-	public ItemModelBuilder addItemBlockModel(Block arg) 
+	public ItemModelBuilder addItemBlockModel(Supplier<? extends Block> arg)
 	{
-		return this.addItemBlockModel(arg, addBlockName(arg));
+		return this.addItemBlockModel(arg, addBlockName(arg.get()));
 	}
 	
-	public ItemModelBuilder addItemBlockModel(Block arg1, String arg2) {
-		return this.withExistingParent(addBlockName(arg1), modLoc(BLOCKFOLDER + arg2));
+	public ItemModelBuilder addItemBlockModel(Supplier<? extends Block> arg1, String arg2) {
+		return this.withExistingParent(addBlockName(arg1.get()), modLoc(BLOCKFOLDER + arg2));
 	}
 	
 	//Adds the texture for Block Models.
-	public ItemModelBuilder addItemBlockModelTexture(Block arg) {
-		return withExistingParent(addBlockName(arg), mcLoc(ITEMGENERATEDLOCATION)).texture(ITEMLAYER0, modLoc(BLOCKFOLDER + addBlockName(arg)));
+	public ItemModelBuilder addItemBlockModelTexture(Supplier<? extends Block> arg) {
+		return withExistingParent(addBlockName(arg.get()), mcLoc(ITEMGENERATEDLOCATION)).texture(ITEMLAYER0, modLoc(BLOCKFOLDER + addBlockName(arg.get())));
 	}
 	
 	/**

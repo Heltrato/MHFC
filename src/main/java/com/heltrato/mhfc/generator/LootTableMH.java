@@ -15,6 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.loot.LootTable.Builder;
 
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -29,18 +30,20 @@ public class LootTableMH extends LootTableProvider {
 
 	}
 
+	@Nonnull
 	@Override
 	public String getName() {
 		return "MH Loot Tables";
 	}
 	
+	@Nonnull
 	@Override
 	protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, Builder>>>, LootParameterSet>> getTables() {
 		return ImmutableList.of(Pair.of(AddBlockLoots::new, LootParameterSets.BLOCK), Pair.of(AddEntityLoots::new, LootParameterSets.ENTITY));
 	}
 	
 	@Override
-	protected void validate(Map<ResourceLocation, LootTable> arg1, ValidationTracker arg2) {
+	protected void validate(Map<ResourceLocation, LootTable> arg1, @Nonnull ValidationTracker arg2) {
 		arg1.forEach((var1,var2) -> LootTableManager.validateLootTable(arg2, var1, var2));
 	}
 
@@ -50,6 +53,7 @@ public class LootTableMH extends LootTableProvider {
 		public void addTables() {	
 			BlocksMH.addBlockLoots(this);
 		}
+		@Nonnull
 		@Override
 		protected Iterable<Block> getKnownBlocks() {
 			return BlocksMH.MOD_BLOCK.getEntries().stream().map(Supplier::get).collect(Collectors.toList());
@@ -63,6 +67,7 @@ public class LootTableMH extends LootTableProvider {
 			EntitiesMH.addEntityLoot(this);
 		}
 		
+		@Nonnull
 		@Override
 		protected Iterable<EntityType<?>> getKnownEntities() {
 			return EntitiesMH.MOD_ENTITY.getEntries().stream().map(Supplier::get).collect(Collectors.toList());

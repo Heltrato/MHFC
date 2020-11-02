@@ -1,17 +1,25 @@
 package com.heltrato.mhfc.world.surfacebuilders;
 
 import com.heltrato.mhfc.MainMH;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Supplier;
 
 public class SurfaceBuildersMH {
 
-    public static SurfaceBuilder<SurfaceBuilderConfig> FROSTZONE_SURFACE_BUILDER = new FrostzoneSurfaceBuilder(SurfaceBuilderConfig.field_237203_a_);
+    public static DeferredRegister<SurfaceBuilder<?>> MOD_SURFACEBUILDER = DeferredRegister.create(ForgeRegistries.SURFACE_BUILDERS, MainMH.MODID);
 
-    public static void addSurfaceBuilders(){
-        Registry.register(Registry.SURFACE_BUILDER, new ResourceLocation(MainMH.MODID, "frostzone_surface_builder"), FROSTZONE_SURFACE_BUILDER);
+
+    public static RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> FROSTZONE_SURFACE_BUILDER = addSurfaceBuilders("frostzone_surface_builder", () -> new FrostzoneSurfaceBuilder(SurfaceBuilderConfig.field_237203_a_));
+
+
+    static <S extends  SurfaceBuilder<?>>RegistryObject<S>  addSurfaceBuilders(String arg1, Supplier<? extends  S> arg2){
+        return  MOD_SURFACEBUILDER.register(arg1, arg2);
     }
+
 
 }
