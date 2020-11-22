@@ -8,16 +8,17 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
-import software.bernie.geckolib.entity.IAnimatedEntity;
-import software.bernie.geckolib.manager.EntityAnimationManager;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public abstract class CreatureEntityMH extends CreatureEntity implements IEntityAdditionalSpawnData, IAnimatedEntity {
+public abstract class CreatureEntityMH extends CreatureEntity implements IEntityAdditionalSpawnData, IAnimatable {
 	
-	public EntityAnimationManager MANAGER = new EntityAnimationManager();
+	public AnimationFactory FACTORY;
 
 	public  CreatureEntityMH(EntityType<? extends CreatureEntity> type, World worldIn) {
 		super(type, worldIn);
 		this.ignoreFrustumCheck = true;
+		FACTORY = new AnimationFactory(this);
 	}
 	
 	@Override
@@ -49,10 +50,10 @@ public abstract class CreatureEntityMH extends CreatureEntity implements IEntity
 	protected boolean canDropLoot() {
 		return super.canDropLoot();
 	}
-	
+
 	@Override
-	public EntityAnimationManager getAnimationManager() {
-		return MANAGER;
+	public AnimationFactory getFactory() {
+		return FACTORY;
 	}
 
 	protected abstract void registerControllers();

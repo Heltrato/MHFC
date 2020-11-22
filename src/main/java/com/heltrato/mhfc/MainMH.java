@@ -5,6 +5,8 @@ import com.heltrato.mhfc.items.ItemsMH;
 import com.heltrato.mhfc.world.DimensionsMH;
 import com.heltrato.mhfc.world.biome.BiomesMH;
 import com.heltrato.mhfc.world.surfacebuilders.SurfaceBuildersMH;
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,6 +31,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import software.bernie.geckolib3.GeckoLib;
 
 @Mod(MainMH.MODID)
 public class MainMH {
@@ -44,6 +47,13 @@ public class MainMH {
 		var.addListener(this::setDataGatherEvent);
 		setDeferredRegisterBus(var);
 		MinecraftForge.EVENT_BUS.register(this);
+
+		if(FMLEnvironment.dist == Dist.CLIENT) {
+			if(Minecraft.getInstance() != null){
+				GeckoLib.initialize();
+			}
+		}
+
 	}
 
 	// Register all features here.

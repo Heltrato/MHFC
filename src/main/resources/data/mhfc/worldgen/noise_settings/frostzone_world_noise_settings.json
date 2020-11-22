@@ -38,7 +38,7 @@
     }
   },
   "default_block": {
-    "Name": "talecraft:frostzone_snow"
+    "Name": "minecraft:stone"
   },
   "default_fluid": {
     "Properties": {
