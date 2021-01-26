@@ -38,7 +38,7 @@
     }
   },
   "default_block": {
-    "Name": "minecraft:stone"
+    "Name": "mhfc:frostzone_stone"
   },
   "default_fluid": {
     "Properties": {

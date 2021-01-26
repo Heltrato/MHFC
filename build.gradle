@@ -65,8 +65,8 @@ sourceSets.main.resources{
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.4-35.1.1'
-    implementation fg.deobf('software.bernie.geckolib:forge-1.16.4-geckolib:3.0.0-beta.10')
+    minecraft 'net.minecraftforge:forge:1.16.5-36.0.1'
+    implementation fg.deobf('software.bernie.geckolib:forge-1.16.5-geckolib:3.0.3')
 }
 
 repositories {
