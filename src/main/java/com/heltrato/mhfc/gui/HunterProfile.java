@@ -63,7 +63,7 @@ public class HunterProfile extends Screen{
 			RenderSystem.enableBlend();
 			RenderSystem.enableRescaleNormal();
 			RenderSystem.color4f(1,1,1,1);
-			getMinecraft().textureManager.bindTexture(HUNTERPROFILETEX);
+			getMinecraft().textureManager.bind(HUNTERPROFILETEX);
 			this.blit(matrixStack, CENTERX,CENTERY,0,0,GUIWIDTH,GUIHEIGHT);
 			int i = 59, j = 135;
 			renderEntityOnScreen(CENTERX + i,  CENTERY + j, 45, (float)(this.CENTERX + i) - this.oldp_render_1_, (float)(this.CENTERY + j - 50) - this.oldp_render_2_, getMinecraft().player);
@@ -80,19 +80,19 @@ public class HunterProfile extends Screen{
 			List<IReorderingProcessor> legs = Lists.newArrayList();
 			List<IReorderingProcessor> boots = Lists.newArrayList();
 
-			Style style = Style.EMPTY.setBold(true);
+			Style style = Style.EMPTY.withBold(true);
 
 
-			name.add(IReorderingProcessor.fromString(I18n.format(NAME), style));
-			hunterRank.add(IReorderingProcessor.fromString(I18n.format(HUNTERRANK), style));
-			health.add(IReorderingProcessor.fromString(I18n.format(I18n.format(HEALTH)), style));
-			stamina.add(IReorderingProcessor.fromString(I18n.format(I18n.format(STAMINA)), style));
-			attack.add(IReorderingProcessor.fromString(I18n.format(I18n.format(ATTACK)), style));
-			affinity.add(IReorderingProcessor.fromString(I18n.format(I18n.format(AFFINITY)), style));
-			helmet.add(IReorderingProcessor.fromString(I18n.format(I18n.format(HELMET)), style));
-			chest.add(IReorderingProcessor.fromString(I18n.format(I18n.format(CHEST)), style));
-			legs.add(IReorderingProcessor.fromString(I18n.format(I18n.format(LEGS)), style));
-			boots.add(IReorderingProcessor.fromString(I18n.format(I18n.format(BOOTS)), style));
+			name.add(IReorderingProcessor.forward(I18n.get(NAME), style));
+			hunterRank.add(IReorderingProcessor.forward(I18n.get(HUNTERRANK), style));
+			health.add(IReorderingProcessor.forward(I18n.get(I18n.get(HEALTH)), style));
+			stamina.add(IReorderingProcessor.forward(I18n.get(I18n.get(STAMINA)), style));
+			attack.add(IReorderingProcessor.forward(I18n.get(I18n.get(ATTACK)), style));
+			affinity.add(IReorderingProcessor.forward(I18n.get(I18n.get(AFFINITY)), style));
+			helmet.add(IReorderingProcessor.forward(I18n.get(I18n.get(HELMET)), style));
+			chest.add(IReorderingProcessor.forward(I18n.get(I18n.get(CHEST)), style));
+			legs.add(IReorderingProcessor.forward(I18n.get(I18n.get(LEGS)), style));
+			boots.add(IReorderingProcessor.forward(I18n.get(I18n.get(BOOTS)), style));
 
 			renderProfileFonts(matrixStack,p_render_1_, p_render_2_);
 			drawTooltip(matrixStack, name, p_render_1_, p_render_2_, this.CENTERX  + 115, this.CENTERY + 35, 135 ,  23);
@@ -121,38 +121,38 @@ public class HunterProfile extends Screen{
 		RenderSystem.translatef((float)posX, (float)posY, 50.0F);
 		RenderSystem.scalef((float)(-scale), (float) scale, (float) scale);
 		RenderSystem.rotatef(180.0F,0.0F,0.0F,1.0F);
-		float f = ent.renderYawOffset;
-		float f1 = ent.rotationYaw;
-		float f2 = ent.rotationPitch;
-		float f3 = ent.prevRotationYawHead;
-		float f4 = ent.rotationYawHead;
+		float f = ent.yBodyRot;
+		float f1 = ent.yRot;
+		float f2 = ent.xRot;
+		float f3 = ent.yHeadRotO;
+		float f4 = ent.yHeadRot;
 		RenderSystem.rotatef(135F,0F,1F,0F);
-		RenderHelper.enableStandardItemLighting();
+		RenderHelper.turnBackOn();
 		RenderSystem.rotatef(-135.0F, 0.0F, 1.0F, 0.0F);
 		RenderSystem.rotatef(-((float) Math.atan(p_render_2_ / 40.0F)) * 20.0F, 1.0F, 0.0F, 0.0F);
-		ent.renderYawOffset = (float) Math.atan(p_render_1_ / 40.0F) * 20.0F;
-		ent.rotationYaw = (float) Math.atan(p_render_1_ / 40.0F) * 40.0F;
-		ent.rotationPitch = -((float) Math.atan(p_render_2_ / 40.0F)) * 20.0F;
-		ent.rotationYawHead = ent.rotationYaw;
-		ent.prevRotationYawHead = ent.rotationYaw;
+		ent.yBodyRot = (float) Math.atan(p_render_1_ / 40.0F) * 20.0F;
+		ent.yRot = (float) Math.atan(p_render_1_ / 40.0F) * 40.0F;
+		ent.xRot = -((float) Math.atan(p_render_2_ / 40.0F)) * 20.0F;
+		ent.yHeadRot = ent.yRot;
+		ent.yHeadRotO = ent.yRot;
 		RenderSystem.translatef(0.0F, 0.0F, 0.0F);
-		EntityRendererManager rendererManager = Minecraft.getInstance().getRenderManager();
+		EntityRendererManager rendererManager = Minecraft.getInstance().getEntityRenderDispatcher();
 			//just a test of setPlayerViewY
 		Quaternion quaternion = Vector3f.YP.rotationDegrees(180.0F);
-		rendererManager.setCameraOrientation(quaternion);
+		rendererManager.overrideCameraOrientation(quaternion);
 		rendererManager.setRenderShadow(false);
-		IRenderTypeBuffer.Impl iRenderTypeBuffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource();
+		IRenderTypeBuffer.Impl iRenderTypeBuffer = Minecraft.getInstance().renderBuffers().bufferSource();
 		MatrixStack matrixStack = new MatrixStack();
-		rendererManager.renderEntityStatic(ent,0.0D,0.0D,0.0D,0.0F,1.0F,matrixStack,iRenderTypeBuffer,15728880);
-		iRenderTypeBuffer.finish();
+		rendererManager.render(ent,0.0D,0.0D,0.0D,0.0F,1.0F,matrixStack,iRenderTypeBuffer,15728880);
+		iRenderTypeBuffer.endBatch();
 		rendererManager.setRenderShadow(true);
-		ent.renderYawOffset = f;
-		ent.rotationYaw = f1;
-		ent.rotationPitch = f2;
-		ent.prevRotationYawHead = f3;
-		ent.rotationYawHead = 4;
+		ent.yBodyRot = f;
+		ent.yRot = f1;
+		ent.xRot = f2;
+		ent.yHeadRotO = f3;
+		ent.yHeadRot = 4;
 		RenderSystem.popMatrix();
-		RenderHelper.disableStandardItemLighting();
+		RenderHelper.turnOff();
 		RenderSystem.disableRescaleNormal();
 	}
 
@@ -165,33 +165,33 @@ public class HunterProfile extends Screen{
 	void renderProfileFonts(MatrixStack matrixStack,int p_render_1_, int p_render_2_) {
 		PlayerEntity playerEntity = getMinecraft().player;
 		RenderSystem.pushMatrix();
-		this.font.drawString(matrixStack,"S T A T U S", CENTERX + 157,  CENTERY + 21, cyan.getRGB());
-		this.font.drawString(matrixStack,"E Q U I P M E N T", this.CENTERX + 20, this.CENTERY + 21, cyan.getRGB());
+		this.font.draw(matrixStack,"S T A T U S", CENTERX + 157,  CENTERY + 21, cyan.getRGB());
+		this.font.draw(matrixStack,"E Q U I P M E N T", this.CENTERX + 20, this.CENTERY + 21, cyan.getRGB());
 		// Render Player name state.
-		this.font.drawString(matrixStack,"Name: ", this.CENTERX + 143, this.CENTERY + 44, white.getRGB());
-		this.font.drawString(matrixStack,"Hunter Rank: ", this.CENTERX + 143, this.CENTERY + 71, white.getRGB());
-		this.font.drawString(matrixStack,"Health: ", this.CENTERX + 143, this.CENTERY + 98, white.getRGB());
-		this.font.drawString(matrixStack,"Stamina: ", this.CENTERX + 143, this.CENTERY + 125, white.getRGB());
-		this.font.drawString(matrixStack,"Attack: ", this.CENTERX + 143, this.CENTERY + 152, white.getRGB());
-		this.font.drawString(matrixStack,"Affinity: ", this.CENTERX + 143, this.CENTERY + 180, white.getRGB());
+		this.font.draw(matrixStack,"Name: ", this.CENTERX + 143, this.CENTERY + 44, white.getRGB());
+		this.font.draw(matrixStack,"Hunter Rank: ", this.CENTERX + 143, this.CENTERY + 71, white.getRGB());
+		this.font.draw(matrixStack,"Health: ", this.CENTERX + 143, this.CENTERY + 98, white.getRGB());
+		this.font.draw(matrixStack,"Stamina: ", this.CENTERX + 143, this.CENTERY + 125, white.getRGB());
+		this.font.draw(matrixStack,"Attack: ", this.CENTERX + 143, this.CENTERY + 152, white.getRGB());
+		this.font.draw(matrixStack,"Affinity: ", this.CENTERX + 143, this.CENTERY + 180, white.getRGB());
 
-		this.font.drawString(matrixStack,playerEntity.getName().getString(), this.CENTERX + 171, this.CENTERY + 44, yellow.getRGB());
-		this.font.drawString(matrixStack," " + playerRank, this.CENTERX + 208, this.CENTERY + 71, yellow.getRGB());
+		this.font.draw(matrixStack,playerEntity.getName().getString(), this.CENTERX + 171, this.CENTERY + 44, yellow.getRGB());
+		this.font.draw(matrixStack," " + playerRank, this.CENTERX + 208, this.CENTERY + 71, yellow.getRGB());
 
 		String playerHealth = Float.toString(Math.round(playerEntity.getMaxHealth()));
-		font.drawString(matrixStack,playerHealth, this.CENTERX + 180, this.CENTERY + 98.5f, yellow.getRGB());
+		font.draw(matrixStack,playerHealth, this.CENTERX + 180, this.CENTERY + 98.5f, yellow.getRGB());
 		// test only
 		String playerStamina = Float.toString(Math.round(playerEntity.getMaxHealth() * 5));
-		font.drawString(matrixStack,playerStamina, this.CENTERX + 183, this.CENTERY + 125.5f, yellow.getRGB());
+		font.draw(matrixStack,playerStamina, this.CENTERX + 183, this.CENTERY + 125.5f, yellow.getRGB());
 
 
 		// Renders the player wearing equipment slots TODO: include MHC weapons
-		List<ItemStack> equip = (List<ItemStack>) playerEntity.getArmorInventoryList();
+		List<ItemStack> equip = (List<ItemStack>) playerEntity.getArmorSlots();
 		for (int e = 0; e < 4; e++) {
 			if (!equip.get(e).isEmpty()) {
-				font.drawString(matrixStack,equip.get(e).getDisplayName().getString(), this.CENTERX + 28, this.CENTERY + 222 - e * 18, cyan.getRGB());
+				font.draw(matrixStack,equip.get(e).getDisplayName().getString(), this.CENTERX + 28, this.CENTERY + 222 - e * 18, cyan.getRGB());
 			} else {
-				font.drawString(matrixStack,"No Equipment ", this.CENTERX + 28, this.CENTERY + 222 - e * 18, cyan.getRGB());
+				font.draw(matrixStack,"No Equipment ", this.CENTERX + 28, this.CENTERY + 222 - e * 18, cyan.getRGB());
 			}
 		}
 		RenderSystem.popMatrix();

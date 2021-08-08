@@ -32,7 +32,7 @@ public class SwordItemMH extends SwordItem{
 	}
 	
 	public SwordItemMH(IItemTier tier, int attackDamageIn,  float attackSpeedIn,  float extraDamage, Rarity rarity) {
-		this(tier, attackDamageIn, attackSpeedIn, extraDamage, new Properties().maxStackSize(1).defaultMaxDamage(tier.getMaxUses()).rarity(rarity).group(MainMH.getItemGroup()));
+		this(tier, attackDamageIn, attackSpeedIn, extraDamage, new Properties().stacksTo(1).defaultDurability(tier.getUses()).rarity(rarity).tab(MainMH.getItemGroup()));
 	}
 	
 	public SwordItemMH(IItemTier tier, int attackDamageIn, float attackSpeedIn, float extraDamage, Item.Properties builder) {
@@ -42,9 +42,9 @@ public class SwordItemMH extends SwordItem{
 	
 	@Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
-        super.addInformation(stack, world, tooltips, flags);
-        tooltips.add(new TranslationTextComponent(getTranslationKey() + ".tooltip"));
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltips, ITooltipFlag flags) {
+        super.appendHoverText(stack, world, tooltips, flags);
+        tooltips.add(new TranslationTextComponent(getDescriptionId() + ".tooltip"));
     }
 
 	

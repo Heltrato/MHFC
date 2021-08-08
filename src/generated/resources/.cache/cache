@@ -5,7 +5,7 @@ fa74f4cb85f745a821210c17a2a671af94adcfc0 assets/mhfc/blockstates/frostzone_ice.j
 717bec680d2fd190d69c585bf796548e12df52be assets/mhfc/blockstates/frostzone_smooth_stone.json
 6dacd58b3e007edcc743fbf1178ac5cb7b55c1f8 assets/mhfc/blockstates/frostzone_snow.json
 bd48940d24959de5859d63b865276303221f2139 assets/mhfc/blockstates/frostzone_stone.json
-5664d51eaa6d7d0f84714853407996191b35b771 assets/mhfc/lang/en_us.json
+aacb57fdeb77f1c492d31a4d68e6254c069c5687 assets/mhfc/lang/en_us.json
 767ace97fee646e7a0ecde7270a9565e203043f5 assets/mhfc/models/block/frostzone_clay_lime.json
 b37bab78f663a3f8a0ffc92604f70f50c17e4262 assets/mhfc/models/block/frostzone_clay_peach.json
 0673b695600d2bb0352bb5c112e8ede968baed53 assets/mhfc/models/block/frostzone_crackedice.json
@@ -29,5 +29,3 @@ b0d6348447be85327408ccee7c0d2d8dbcca98a7 data/mhfc/loot_tables/blocks/frostzone_
 74123b00ff8b32fa974467aea088211f799fd720 data/mhfc/loot_tables/blocks/frostzone_smooth_stone.json
 ed0c7e439697d8cc28880b2d1d4048e2c4599dc4 data/mhfc/loot_tables/blocks/frostzone_snow.json
 742b596a173ded593d92754cd12ca32c87e48df4 data/mhfc/loot_tables/blocks/frostzone_stone.json
-f0266b86d509baafb030ddb9915394ea06d372cd data/mhfc/loot_tables/entities/felyne.json
-f0266b86d509baafb030ddb9915394ea06d372cd data/mhfc/loot_tables/entities/popo.json

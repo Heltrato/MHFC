@@ -14,7 +14,7 @@ public class SurfaceBuildersMH {
     public static DeferredRegister<SurfaceBuilder<?>> MOD_SURFACEBUILDER = DeferredRegister.create(ForgeRegistries.SURFACE_BUILDERS, MainMH.MODID);
 
 
-    public static RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> FROSTZONE_SURFACE_BUILDER = addSurfaceBuilders("frostzone_surface_builder", () -> new FrostzoneSurfaceBuilder(SurfaceBuilderConfig.field_237203_a_));
+    public static RegistryObject<SurfaceBuilder<SurfaceBuilderConfig>> FROSTZONE_SURFACE_BUILDER = addSurfaceBuilders("frostzone_surface_builder", () -> new FrostzoneSurfaceBuilder(SurfaceBuilderConfig.CODEC));
 
 
     static <S extends  SurfaceBuilder<?>>RegistryObject<S>  addSurfaceBuilders(String arg1, Supplier<? extends  S> arg2){

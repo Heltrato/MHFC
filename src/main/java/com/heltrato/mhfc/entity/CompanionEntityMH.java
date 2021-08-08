@@ -32,7 +32,7 @@ public abstract class CompanionEntityMH extends CreatureEntityMH{
 	}
 
 	public static AttributeModifierMap.MutableAttribute func_234295_eP_() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.ATTACK_DAMAGE);
+		return MobEntity.createLivingAttributes().add(Attributes.ATTACK_DAMAGE);
 	}
 
 	@Override
@@ -43,9 +43,9 @@ public abstract class CompanionEntityMH extends CreatureEntityMH{
 	public void readSpawnData(PacketBuffer additionalData) {
 	}
 
-	public static boolean canSpawnOn(EntityType<? extends MobEntity> typeIn, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
-		BlockPos blockpos = pos.down();
-		return reason == SpawnReason.SPAWNER || reason == SpawnReason.MOB_SUMMONED || worldIn.getBlockState(blockpos).canEntitySpawn(worldIn, blockpos, typeIn);
+	public static boolean canSpawnOn(EntityType<? extends CompanionEntityMH> typeIn, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
+		BlockPos blockpos = pos.below();
+		return reason == SpawnReason.SPAWNER || reason == SpawnReason.MOB_SUMMONED || worldIn.getBlockState(blockpos).isValidSpawn(worldIn, blockpos, typeIn);
 	}
 	
 

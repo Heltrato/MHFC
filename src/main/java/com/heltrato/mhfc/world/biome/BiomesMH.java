@@ -15,7 +15,7 @@ public class BiomesMH {
     public static DeferredRegister<Biome> MOD_BIOME = DeferredRegister.create(ForgeRegistries.BIOMES, MainMH.MODID);
 
     static {
-        addBiome("frostzone_thickhoar", BiomeMaker::makeVoidBiome);
+        addBiome("frostzone_thickhoar", BiomeMaker::theVoidBiome);
     }
 
     public static RegistryObject<Biome> addBiome(String arg1, Supplier<Biome> arg2){

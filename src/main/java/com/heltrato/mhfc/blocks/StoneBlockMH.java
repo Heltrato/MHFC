@@ -20,8 +20,8 @@ public class StoneBlockMH extends  BlockMH{
     }
 
     @Override
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        super.onEntityWalk(worldIn, pos, entityIn);
+    public void stepOn(World worldIn, BlockPos pos, Entity entityIn) {
+        super.stepOn(worldIn, pos, entityIn);
     }
 
 

@@ -16,7 +16,7 @@ public class RecipesMH extends RecipeProviderMH implements IConditionBuilder{
 	}
 	
 	@Override
-	protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
+	protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
 	}
 
 }

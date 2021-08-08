@@ -14,8 +14,9 @@ public class ItemGroupMH extends ItemGroup {
 
 	@Nonnull
 	@Override
-	public ItemStack createIcon() {
+	public ItemStack makeIcon() {
 		return new ItemStack(ItemsMH.SWORD_HUNTERKNIFE.get());
 	}
-	
+
+
 }

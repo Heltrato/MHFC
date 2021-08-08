@@ -17,11 +17,11 @@ ClientEventMH {
     @SubscribeEvent
     public static void setKeybindEvent(final TickEvent.ClientTickEvent arg){
         Minecraft minecraft = Minecraft.getInstance();
-            while (KeybindingsMH.getHunterprofilekey().isKeyDown()){
-                if(minecraft.currentScreen == null){
+            while (KeybindingsMH.getHunterprofilekey().isDown()){
+                if(minecraft.screen == null){
                     Style style = Style.EMPTY;
-                    ITextComponent textComponent = new StringTextComponent("mhfc.hunterprofiledisplay").setStyle((style.setColor(Color.fromTextFormatting(TextFormatting.BLUE)).setBold(true)));
-                    minecraft.displayGuiScreen(new HunterProfile(textComponent));
+                    ITextComponent textComponent = new StringTextComponent("mhfc.hunterprofiledisplay").setStyle((style.withColor(Color.fromLegacyFormat(TextFormatting.BLUE)).withBold(true)));
+                    minecraft.setScreen(new HunterProfile(textComponent));
                     MainMH.log.debug("Hunter Profile is being activated.");
                 }
             }

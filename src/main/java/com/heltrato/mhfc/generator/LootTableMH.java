@@ -44,7 +44,7 @@ public class LootTableMH extends LootTableProvider {
 	
 	@Override
 	protected void validate(Map<ResourceLocation, LootTable> arg1, @Nonnull ValidationTracker arg2) {
-		arg1.forEach((var1,var2) -> LootTableManager.validateLootTable(arg2, var1, var2));
+		arg1.forEach((var1,var2) -> LootTableManager.validate(arg2, var1, var2));
 	}
 
 	// Loot table for block drops.

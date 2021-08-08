@@ -17,17 +17,17 @@ import net.minecraft.loot.LootTable;
 
 public abstract class BlockLootProviderMH extends BlockLootTables {
 
-	final static ILootCondition.IBuilder SILKTOUCH = MatchTool.builder(ItemPredicate.Builder.create().enchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))));
-	final static ILootCondition.IBuilder SHEAR =MatchTool.builder(ItemPredicate.Builder.create().item(Items.SHEARS));
-	final static ILootCondition.IBuilder SILKorSHEAR = SHEAR.alternative(SILKTOUCH);
-	final static ILootCondition.IBuilder SHEARorSILK = SILKorSHEAR.inverted();
+	final static ILootCondition.IBuilder SILKTOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(	new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))));
+	final static ILootCondition.IBuilder SHEAR =MatchTool.toolMatches(ItemPredicate.Builder.item().item().of(Items.SHEARS));
+	final static ILootCondition.IBuilder SILKorSHEAR = SHEAR.or(SILKTOUCH);
+	final static ILootCondition.IBuilder SHEARorSILK = SILKorSHEAR.invert();
 	
-	public void registerTable(Block arg1, Function<Block, LootTable.Builder> arg2) {
-        super.registerLootTable(arg1, arg2);
+	public void add(Supplier<Block> arg1, Function<Block, LootTable.Builder> arg2) {
+        super.add(arg1.get(), arg2.apply(arg1.get()));
     }
 	
 	public void addBlockSelfDrop(Supplier<? extends Block> arg) {
-		super.registerDropSelfLootTable(arg.get());
+		super.dropSelf(arg.get());
 	}
 
 

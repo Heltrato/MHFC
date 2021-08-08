@@ -7,7 +7,7 @@ import net.minecraft.item.ShieldItem;
 public class ShieldItemMH extends ShieldItem{
 
 	public ShieldItemMH() {
-		super(new Properties().group(MainMH.getItemGroup()).maxStackSize(1));
+		super(new Properties().tab(MainMH.getItemGroup()).stacksTo(1));
 		
 	}
 

@@ -17,7 +17,7 @@ public abstract class CreatureEntityMH extends CreatureEntity implements IEntity
 
 	public  CreatureEntityMH(EntityType<? extends CreatureEntity> type, World worldIn) {
 		super(type, worldIn);
-		this.ignoreFrustumCheck = true;
+		this.noCulling = true;
 		FACTORY = new AnimationFactory(this);
 	}
 	
@@ -28,27 +28,27 @@ public abstract class CreatureEntityMH extends CreatureEntity implements IEntity
 
 
 	public static AttributeModifierMap.MutableAttribute func_234295_eP_() {
-		return MobEntity.func_233666_p_().createMutableAttribute(Attributes.ATTACK_DAMAGE);
+		return MobEntity.createMobAttributes().add(Attributes.ATTACK_DAMAGE);
 	}
 	
 	@Override
-	public void livingTick() {
-		super.livingTick();
+	public void aiStep() {
+		super.aiStep();
 	}
 	
 	@Override
-	public void onDeath(DamageSource cause) {
-		super.onDeath(cause);
+	public void die(DamageSource cause) {
+		super.die(cause);
 	}
 	
 	@Override
-	protected void onDeathUpdate() {
-		super.onDeathUpdate();
+	protected void tickDeath() {
+		super.tickDeath();
 	}
 	
 	@Override
-	protected boolean canDropLoot() {
-		return super.canDropLoot();
+	protected boolean shouldDropExperience() {
+		return super.shouldDropExperience();
 	}
 
 	@Override

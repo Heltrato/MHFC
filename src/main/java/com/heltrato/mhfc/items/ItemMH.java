@@ -10,7 +10,7 @@ public class ItemMH extends Item {
 	int int_Burn;
 
 	public ItemMH() {
-			this(new Properties().group(MainMH.getItemGroup()));
+			this(new Properties().tab(MainMH.getItemGroup()));
 	}
 
 	//Burn Properties.

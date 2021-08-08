@@ -54,8 +54,8 @@ public abstract class HerbivoreEntityMH extends  CreatureEntityMH {
     }
 
     public static boolean canSpawnOn(EntityType<? extends MobEntity> typeIn, IWorld worldIn, SpawnReason reason, BlockPos pos, Random randomIn) {
-        BlockPos blockpos = pos.down();
-        return reason == SpawnReason.SPAWNER || reason == SpawnReason.MOB_SUMMONED || worldIn.getBlockState(blockpos).canEntitySpawn(worldIn, blockpos, typeIn);
+        BlockPos blockpos = pos.below();
+        return reason == SpawnReason.SPAWNER || reason == SpawnReason.MOB_SUMMONED || worldIn.getBlockState(blockpos).isValidSpawn(worldIn, blockpos, typeIn);
     }
 
 }

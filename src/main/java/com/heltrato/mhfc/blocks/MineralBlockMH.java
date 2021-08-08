@@ -17,7 +17,7 @@ public class MineralBlockMH extends Block {
     int lifespan;
 
     public MineralBlockMH(int var1, int var2) {
-        super(Properties.create(Material.ROCK).sound(SoundType.STONE).setLightLevel((state) -> var1).harvestTool(ToolType.PICKAXE).notSolid());
+        super(Properties.of(Material.STONE).sound(SoundType.STONE).lightLevel((state) -> var1).harvestTool(ToolType.PICKAXE).noCollission());
         this.lifespan = var2;
 
     }
@@ -27,13 +27,13 @@ public class MineralBlockMH extends Block {
 
 
     @Override
-    public boolean ticksRandomly(BlockState state) {
-        return super.ticksRandomly(state);
+    public boolean isRandomlyTicking(BlockState state) {
+        return super.isRandomlyTicking(state);
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        return super.use(state, worldIn, pos, player, handIn, hit);
     }
 
 }

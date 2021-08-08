@@ -26,19 +26,19 @@ public class GlacierBlockMH extends BlockMH {
 
 	@SuppressWarnings("deprecation")
 	@OnlyIn(Dist.CLIENT)
-	public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
-		return adjacentBlockState.getBlock() == this || super.isSideInvisible(state, adjacentBlockState, side);
+	public boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
+		return adjacentBlockState.getBlock() == this || super.skipRendering(state, adjacentBlockState, side);
 	}
 
 	@Override
-	public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+	public void stepOn(World worldIn, BlockPos pos, Entity entityIn) {
 		if (worldIn.getBlockState(pos).getBlock() == BlocksMH.FROSTZONE_CRACKEDICE.get()) {
-			BlockState var1 = Blocks.WATER.getDefaultState();
-			worldIn.playSound(null, pos, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.BLOCKS, 1.0f,
+			BlockState var1 = Blocks.WATER.defaultBlockState();
+			worldIn.playSound(null, pos, SoundEvents.GLASS_BREAK, SoundCategory.BLOCKS, 1.0f,
 					1.0f);
-			worldIn.setBlockState(pos, var1);
+			worldIn.setBlockAndUpdate(pos, var1);
 		}
-		super.onEntityWalk(worldIn, pos, entityIn);
+		super.stepOn(worldIn, pos, entityIn);
 	}
 
 	@OnlyIn(Dist.CLIENT)

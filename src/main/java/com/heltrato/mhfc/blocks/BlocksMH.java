@@ -84,9 +84,9 @@ public class BlocksMH {
 
 	@OnlyIn(Dist.CLIENT)
 	public static void classifyBlockRenderTypes() {
-		RenderTypeLookup.setRenderLayer(FROSTZONE_CRACKEDICE.get(), RenderType.getTranslucent());
-		RenderTypeLookup.setRenderLayer(FROSTZONE_ICE.get(), RenderType.getTranslucent());
-		RenderTypeLookup.setRenderLayer(FROSTZONE_MINERAL_LOW.get(), RenderType.getCutout());
+		RenderTypeLookup.setRenderLayer(FROSTZONE_CRACKEDICE.get(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(FROSTZONE_ICE.get(), RenderType.translucent());
+		RenderTypeLookup.setRenderLayer(FROSTZONE_MINERAL_LOW.get(), RenderType.cutout());
 		MainMH.log.info("Applying Render Types for certain " + MainMH.MODID.toUpperCase() + " blocks! ");
 	}
 
@@ -108,7 +108,7 @@ public class BlocksMH {
 	}
 
 	static Supplier<BlockItem> addItemBlockProperty(final RegistryObject<Block> var) {
-		return () -> new BlockItem(var.get(), new Item.Properties().group(MainMH.getItemGroup()));
+		return () -> new BlockItem(var.get(), new Item.Properties().tab(MainMH.getItemGroup()));
 	}
 
 

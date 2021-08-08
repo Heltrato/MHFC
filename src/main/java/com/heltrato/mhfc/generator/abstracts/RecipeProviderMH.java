@@ -32,7 +32,7 @@ public abstract class RecipeProviderMH extends ForgeRecipeProvider implements IC
 	}
 	
 	public CookingRecipeBuilder addItemBlastSmeltery(IItemProvider var1, IItemProvider arg2, float arg3, int arg4, int arg5) {
-		return CookingRecipeBuilder.blastingRecipe(Ingredient.fromStacks(new ItemStack(arg2, arg4)), var1, arg3, arg5).addCriterion("has_" + arg2.asItem().getRegistryName(), this.hasItem(arg2));
+		return CookingRecipeBuilder.blasting(Ingredient.of(new ItemStack(arg2, arg4)), var1, arg3, arg5).unlockedBy("has_" + arg2.asItem().getRegistryName(), this.has(arg2));
 	}
 	
 	CookingRecipeBuilder addItemSmeltery(IItemProvider var1, IItemProvider arg2, float arg3, int arg4) {
@@ -49,7 +49,7 @@ public abstract class RecipeProviderMH extends ForgeRecipeProvider implements IC
 	 */
 	
 	CookingRecipeBuilder addItemSmeltery(IItemProvider var1, IItemProvider arg2, float arg3, int arg4, int arg5) {
-		return CookingRecipeBuilder.smeltingRecipe(Ingredient.fromStacks(new ItemStack(arg2, arg4)), var1, arg3, arg5)	.addCriterion("has_" + arg2.asItem().getRegistryName(), this.hasItem(arg2));
+		return CookingRecipeBuilder.smelting(Ingredient.of(new ItemStack(arg2, arg4)), var1, arg3, arg5).unlockedBy("has_" + arg2.asItem().getRegistryName(), this.has(arg2));
 	}
 	
 	ResourceLocation resourceModFolderLocation(String var1) {
