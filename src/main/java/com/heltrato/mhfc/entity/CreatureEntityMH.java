@@ -5,6 +5,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -35,6 +36,8 @@ public abstract class CreatureEntityMH extends CreatureEntity implements IAnimEn
 	protected float nearDeathHP;
 
 	protected int deathTicks;
+	protected int optimalHungerTick;
+	protected int starvationTick;
 
 	protected LivingEntity targetEntity;
 
@@ -99,6 +102,7 @@ public abstract class CreatureEntityMH extends CreatureEntity implements IAnimEn
 		super.tick();
 		if(getTargetEntity() != null){
 			targetDistance = preciseDistance(getTargetEntity());
+			targetAngle = preciseAngleInBetweenEntities()
 		}
 	}
 
@@ -125,6 +129,7 @@ public abstract class CreatureEntityMH extends CreatureEntity implements IAnimEn
 	/**
 	 * Preliminary Calculations
 	 */
+
 
 	public float preciseDistance(@Nullable LivingEntity livingEntity){
 		return this.distanceTo(livingEntity) - livingEntity.getBbWidth() / 2F;
@@ -163,6 +168,18 @@ public abstract class CreatureEntityMH extends CreatureEntity implements IAnimEn
 
 	public float getMaxHp(){
 		return maxHp;
+	}
+
+	@Override
+	public boolean attackable() {
+		return super.attackable();
+	}
+
+
+	//Attack Entity From Method
+	@Override
+	public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
+		return super.hurt(p_70097_1_, p_70097_2_);
 	}
 
 
